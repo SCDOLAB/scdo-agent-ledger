@@ -103,6 +103,12 @@ const res = await fetchWithPay("https://service.example/paid"); // 402 -> pay ->
 
 The export marks each agent's `verified` status and `operator_type` (`scdo_internal`, `test`, `independent`). This repo does not mirror the list; read it live.
 
+## ERC-8444 ARD alignment
+
+SCDO agents are also described as [ERC-8444 "Agentic Resource Discovery (ARD) Onchain"](https://eips.ethereum.org/EIPS/eip-8444) **value records**, so agents searching by that standard can find SCDO's terms and settlement: `value:kind: "agent"`, `value:registration` → the ERC-8004 `registration.json`, `value:terms` (`unit: "call"`, 0.01 USDC) and `value:settlement` with an **`x402` rail** paying USDC on Base (CAIP-19 `eip155:8453/erc20:0x8335…2913`). Examples and notes: [`spec/erc8444/`](spec/erc8444/).
+
+ERC-8444 is a Draft; this is a compatible descriptor format, not a certification, and no on-chain ARD registry instance is deployed yet (level 0).
+
 ## Caveats
 
 - ERC-8004 is a draft. This is a compatible implementation, not an official or audited certification.

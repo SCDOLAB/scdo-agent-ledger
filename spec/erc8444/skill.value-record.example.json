@@ -1,0 +1,25 @@
+{
+  "@context": ["https://eips.ethereum.org/assets/eip-8444/value-context.jsonld"],
+  "identifier": "urn:air:scdo.com.au:skill:example-x402-call",
+  "displayName": "SCDO agent skill (illustrative)",
+  "type": "application/json",
+  "url": "https://scdo.com.au/agents/",
+  "description": "ILLUSTRATIVE ONLY. Shape of an ERC-8444 skill value record for a SCDO agent service paid per call over x402. ERC-8444 skill records anchor to a token-bound executable skill token (CAIP-19); SCDO has not deployed one, so this is a level-0 (dormant) descriptor and value:provenance is omitted.",
+  "value:kind": "skill",
+  "value:controller": "did:pkh:eip155:5680:0x04ae06Dc47B2Ec9474AEeFBbF6C33E4E6a63505C",
+  "value:terms": {
+    "unit": "call",
+    "price": {
+      "amount": "0.01",
+      "currency": "USDC",
+      "asset": "eip155:8453/erc20:0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
+    }
+  },
+  "value:settlement": [
+    {
+      "rail": "x402",
+      "payee": "eip155:8453:0xC9D943feE993f4edD6462cE16628f38f57097597",
+      "asset": "eip155:8453/erc20:0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
+    }
+  ]
+}

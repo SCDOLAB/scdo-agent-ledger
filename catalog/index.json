@@ -31,5 +31,16 @@
   },
   "schema": "https://github.com/SCDOLAB/scdo-agent-ledger/blob/main/spec/registration.schema.json",
   "paper": "https://doi.org/10.5281/zenodo.23520674",
-  "note": "This file is a static pointer. The agent list is live; read it from the endpoints above rather than from this repository."
+  "note": "This file is a static pointer. The agent list is live; read it from the endpoints above rather than from this repository.",
+  "standards": {
+    "erc8004": "https://eips.ethereum.org/EIPS/eip-8004",
+    "erc8444": {
+      "url": "https://eips.ethereum.org/EIPS/eip-8444",
+      "status": "ERC-8444 ARD-aligned descriptors (draft standard; compatible implementation, level 0, no on-chain ARD registry deployed)",
+      "examples": "https://github.com/SCDOLAB/scdo-agent-ledger/tree/main/spec/erc8444",
+      "settlementRails": [
+        "x402"
+      ]
+    }
+  }
 }

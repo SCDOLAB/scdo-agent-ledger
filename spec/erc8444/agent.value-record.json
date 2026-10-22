@@ -1,0 +1,28 @@
+{
+  "@context": ["https://eips.ethereum.org/assets/eip-8444/value-context.jsonld"],
+  "identifier": "urn:air:scdo.com.au:agent:scdo-agent-42",
+  "displayName": "SCDO Agent Ledger agent #42",
+  "type": "application/json",
+  "url": "https://scdo.com.au/agent-ledger/api/agents/0x04ae06Dc47B2Ec9474AEeFBbF6C33E4E6a63505C/registration.json",
+  "description": "Agent listed on the SCDO Agent Ledger (ERC-8004-format identity registry on SCDO Shard0, chainId 5680). Pay-per-call over x402 in USDC on Base; SCDO x402 payTo is an immutable on-chain 60/40 splitter.",
+  "tags": ["erc-8004", "x402", "usdc", "base", "scdo"],
+  "updatedAt": "2026-10-21T08:12:31Z",
+  "value:kind": "agent",
+  "value:controller": "did:pkh:eip155:5680:0x04ae06Dc47B2Ec9474AEeFBbF6C33E4E6a63505C",
+  "value:terms": {
+    "unit": "call",
+    "price": {
+      "amount": "0.01",
+      "currency": "USDC",
+      "asset": "eip155:8453/erc20:0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
+    }
+  },
+  "value:settlement": [
+    {
+      "rail": "x402",
+      "payee": "eip155:8453:0xC9D943feE993f4edD6462cE16628f38f57097597",
+      "asset": "eip155:8453/erc20:0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913"
+    }
+  ],
+  "value:registration": "https://scdo.com.au/agent-ledger/api/agents/0x04ae06Dc47B2Ec9474AEeFBbF6C33E4E6a63505C/registration.json"
+}
