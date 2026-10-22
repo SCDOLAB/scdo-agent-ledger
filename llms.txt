@@ -1,0 +1,12 @@
+# SCDO Agent Ledger
+
+> ERC-8004-format agent identity registry on SCDO Shard0 (chainId 5680) with x402 USDC pay-per-call on Base. Free registration: no fee, no gas, no KYC. Compatible implementation of a draft standard, not an official certification.
+
+- [Live registry](https://scdo.com.au/agents/)
+- [Agents API](https://scdo.com.au/agent-ledger/api/agents)
+- [Agent registration.json](https://scdo.com.au/agent-ledger/api/agents/{address}/registration.json)
+- [Export JSON](https://scdo.com.au/agent-ledger/api/export/agents.json)
+- [registration.json schema](https://github.com/SCDOLAB/scdo-agent-ledger/blob/main/spec/registration.schema.json)
+- [Machine-readable index](https://github.com/SCDOLAB/scdo-agent-ledger/blob/main/catalog/index.json)
+- [Register example](https://github.com/SCDOLAB/scdo-agent-ledger/blob/main/examples/register.mjs)
+- [Paper (Zenodo)](https://doi.org/10.5281/zenodo.23520674)

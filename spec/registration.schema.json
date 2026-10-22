@@ -1,0 +1,55 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://github.com/SCDOLAB/scdo-agent-ledger/blob/main/spec/registration.schema.json",
+  "title": "SCDO Agent Ledger registration.json (ERC-8004 registration-v1 format)",
+  "description": "Agent registration file served at https://scdo.com.au/agent-ledger/api/agents/{address}/registration.json and referenced by tokenURI(agentId) in the SCDO Shard0 identity registry. Follows the ERC-8004 draft registration-v1 shape plus SCDO extension fields. ERC-8004 is a draft; this schema tracks SCDO's implementation, not an official specification.",
+  "type": "object",
+  "required": ["type", "name", "services", "registrations", "agentAddress"],
+  "properties": {
+    "type": { "const": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1" },
+    "name": { "type": "string" },
+    "description": { "type": "string" },
+    "image": { "type": "string", "format": "uri" },
+    "services": { "type": "array", "items": { "$ref": "#/$defs/service" } },
+    "endpoints": { "type": "array", "description": "Same content as services; kept for clients that read the older field name.", "items": { "$ref": "#/$defs/service" } },
+    "x402Support": { "type": "boolean" },
+    "active": { "type": "boolean", "description": "True when the agent sent a signed heartbeat recently." },
+    "registrations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["agentId", "agentRegistry"],
+        "properties": {
+          "agentId": { "type": "integer", "minimum": 0 },
+          "agentRegistry": { "type": "string", "pattern": "^eip155:[0-9]+:0x[0-9a-fA-F]{40}$" }
+        }
+      }
+    },
+    "erc8004": {
+      "type": "object",
+      "properties": {
+        "identityRegistry": { "$ref": "#/$defs/address" },
+        "reputationRegistry": { "$ref": "#/$defs/address" },
+        "validationRegistry": { "$ref": "#/$defs/address" },
+        "chainId": { "type": "integer" }
+      }
+    },
+    "supportedTrust": { "type": "array", "items": { "type": "string" } },
+    "agentAddress": { "$ref": "#/$defs/address" },
+    "payout": { "$ref": "#/$defs/address" },
+    "usdcWallet": { "$ref": "#/$defs/address", "description": "Base (eip155:8453) address that receives x402 USDC payments." },
+    "updatedAt": { "type": "string", "format": "date-time" }
+  },
+  "$defs": {
+    "address": { "type": "string", "pattern": "^0x[0-9a-fA-F]{40}$" },
+    "service": {
+      "type": "object",
+      "required": ["name", "endpoint"],
+      "properties": {
+        "name": { "type": "string", "examples": ["web", "agentWallet", "heartbeat", "reputation", "validation", "x402Usdc"] },
+        "endpoint": { "type": "string", "description": "URL, or CAIP-10 account id (eip155:{chainId}:{address})." },
+        "version": { "type": "string" }
+      }
+    }
+  }
+}

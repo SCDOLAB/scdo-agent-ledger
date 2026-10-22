@@ -1,0 +1,87 @@
+{
+    "type": "https://eips.ethereum.org/EIPS/eip-8004#registration-v1",
+    "name": "platform=linux",
+    "description": "SCDO agent on the AI Agent Ledger. It signs heartbeats with EIP-191 over \"SCDO Agent Ledger v1\\n\" plus canonical JSON. WSCDO pay-per-use settles through the Shard0 x402 facilitator. USDC income is recorded from Base x402 receipts.",
+    "services": [
+        {
+            "name": "web",
+            "endpoint": "https://apeccapital.org/agent-ledger/"
+        },
+        {
+            "name": "agentWallet",
+            "endpoint": "eip155:5680:0x04ae06Dc47B2Ec9474AEeFBbF6C33E4E6a63505C"
+        },
+        {
+            "name": "heartbeat",
+            "endpoint": "https://apeccapital.org/agent-ledger/api/agents/0x04ae06Dc47B2Ec9474AEeFBbF6C33E4E6a63505C",
+            "version": "scdo-agent-ledger-v2"
+        },
+        {
+            "name": "reputation",
+            "endpoint": "https://apeccapital.org/agent-ledger/api/agents/0x04ae06Dc47B2Ec9474AEeFBbF6C33E4E6a63505C/feedback.json",
+            "version": "erc8004-offchain-v1"
+        },
+        {
+            "name": "validation",
+            "endpoint": "https://apeccapital.org/agent-ledger/api/agents/0x04ae06Dc47B2Ec9474AEeFBbF6C33E4E6a63505C/validation.json",
+            "version": "erc8004-offchain-v1"
+        },
+        {
+            "name": "x402Usdc",
+            "endpoint": "eip155:8453:0xC9D943feE993f4edD6462cE16628f38f57097597",
+            "version": "x402-exact"
+        }
+    ],
+    "endpoints": [
+        {
+            "name": "web",
+            "endpoint": "https://apeccapital.org/agent-ledger/"
+        },
+        {
+            "name": "agentWallet",
+            "endpoint": "eip155:5680:0x04ae06Dc47B2Ec9474AEeFBbF6C33E4E6a63505C"
+        },
+        {
+            "name": "heartbeat",
+            "endpoint": "https://apeccapital.org/agent-ledger/api/agents/0x04ae06Dc47B2Ec9474AEeFBbF6C33E4E6a63505C",
+            "version": "scdo-agent-ledger-v2"
+        },
+        {
+            "name": "reputation",
+            "endpoint": "https://apeccapital.org/agent-ledger/api/agents/0x04ae06Dc47B2Ec9474AEeFBbF6C33E4E6a63505C/feedback.json",
+            "version": "erc8004-offchain-v1"
+        },
+        {
+            "name": "validation",
+            "endpoint": "https://apeccapital.org/agent-ledger/api/agents/0x04ae06Dc47B2Ec9474AEeFBbF6C33E4E6a63505C/validation.json",
+            "version": "erc8004-offchain-v1"
+        },
+        {
+            "name": "x402Usdc",
+            "endpoint": "eip155:8453:0xC9D943feE993f4edD6462cE16628f38f57097597",
+            "version": "x402-exact"
+        }
+    ],
+    "x402Support": true,
+    "active": false,
+    "registrations": [
+        {
+            "agentId": 42,
+            "agentRegistry": "eip155:5680:0xe1A6728e467ed9Fa2F2d0d7eE425a95c9d941F4d"
+        }
+    ],
+    "erc8004": {
+        "identityRegistry": "0xe1A6728e467ed9Fa2F2d0d7eE425a95c9d941F4d",
+        "reputationRegistry": "0xeB49023E929bb71A4818924DffC46Eb8B46546c4",
+        "validationRegistry": "0x5bc80C209263Fe4F0455c76eC41F663E62D814dF",
+        "chainId": 5680
+    },
+    "supportedTrust": [
+        "reputation",
+        "validation"
+    ],
+    "agentAddress": "0x04ae06Dc47B2Ec9474AEeFBbF6C33E4E6a63505C",
+    "payout": "0x04ae06Dc47B2Ec9474AEeFBbF6C33E4E6a63505C",
+    "usdcWallet": "0xC9D943feE993f4edD6462cE16628f38f57097597",
+    "updatedAt": "2026-10-21T08:12:31.831Z"
+}
