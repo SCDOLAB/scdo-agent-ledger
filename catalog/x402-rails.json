@@ -1,0 +1,102 @@
+{
+  "$schema": "https://scdo.com.au/schemas/x402-rails-v1.json",
+  "name": "SCDO x402 multi-chain tax rails",
+  "operator": {
+    "legalName": "9Y9 PTY LTD",
+    "tradingAs": "SCDO Laboratory",
+    "abn": "19 600 445 118",
+    "acn": "600 445 118",
+    "austracDce": "DCE100714503-001",
+    "domains": {
+      "main": "https://scdo.com.au",
+      "company": "https://apeccapital.org",
+      "legacyExplorer": "https://scdoscan.io"
+    },
+    "github": "https://github.com/SCDOLAB",
+    "contact": "admin@scdo.com.au"
+  },
+  "updated": "2026-10-23",
+  "timezoneNote": "Australia/Sydney",
+  "fee": {
+    "agentShareBps": 4000,
+    "scdoTaxBps": 6000,
+    "founderPromo": "10% SCDO fee for the first 10 independent customers (standard otherwise 60% SCDO / 40% agent)",
+    "custody": "none — payTo is an immutable on-chain split; SCDO never holds agent funds",
+    "treasuryExplainer": "https://scdo.com.au/treasury/",
+    "terms": "https://scdo.com.au/terms/x402/"
+  },
+  "whyAgentsPayScdo": [
+    "One integration covers five live x402 settlement rails (Base USDC, Solana USDC, TRON USDT, BNB USDT, TON USDT).",
+    "Non-custodial: payTo equals an immutable on-chain split; agent share and SCDO tax settle automatically; SCDO never holds agent funds.",
+    "Transparent economics: standard 60% SCDO / 40% agent; founder 10% fee for the first 10 independent customers; public treasury page https://scdo.com.au/treasury/.",
+    "Operator compliance signal: 9Y9 PTY LTD is AUSTRAC DCE registered (DCE100714503-001). Company fact only; not legal advice.",
+    "Discovery path for agent commerce: structured endpoints and payTo addresses so other bots can find and call paid agents without inventing rails."
+  ],
+  "honestStatus": {
+    "independentCustomerVolume": 0,
+    "label": "laboratory self-tests passed on five rails; independent paying volume still zero as of 2026-10-23"
+  },
+  "rails": [
+    {
+      "id": "base-usdc",
+      "chain": "Base",
+      "chainId": 8453,
+      "caip2": "eip155:8453",
+      "asset": "USDC",
+      "status": "live",
+      "notes": "0xSplits PushSplits; fee path ON in relay; Keeper 0xb89f05C5A65DDEe46ae9644Fa7565449D3C9f8d4",
+      "keeper": "0xb89f05C5A65DDEe46ae9644Fa7565449D3C9f8d4",
+      "health": "https://scdo.com.au/x402-base/health",
+      "splitLookup": "https://scdo.com.au/x402-base/split/{address}",
+      "facilitatorNote": "Facilitator pays settlement gas; SCDO calls distribute and pays its gas"
+    },
+    {
+      "id": "solana-usdc",
+      "chain": "Solana",
+      "caip2": "solana:5eykt4UsFcVjCGUd2Eq1YsOoWD4AJrytS",
+      "asset": "USDC",
+      "status": "live",
+      "program": "buLm3sNfWshxfUngXxrGprQPBNjwTMbiEww5KTXgyrn",
+      "payTo": "B6wpK4TCrhb2Hn5gQf9ppPAyphtA9F5d9twJhho31erf",
+      "notes": "payTo is split-config PDA"
+    },
+    {
+      "id": "tron-usdt",
+      "chain": "TRON",
+      "caip2": "tron:728126428",
+      "asset": "USDT",
+      "status": "live",
+      "page": "https://scdo.com.au/x402-tron/",
+      "health": "https://scdo.com.au/x402-tron/health",
+      "payTo": "TSgaUvCoM3ju14H1N5Sd3GA1mhi4ebqFks"
+    },
+    {
+      "id": "bnb-usdt",
+      "chain": "BNB Chain",
+      "chainId": 56,
+      "caip2": "eip155:56",
+      "asset": "USDT",
+      "status": "live",
+      "page": "https://scdo.com.au/x402-bnb/",
+      "health": "https://scdo.com.au/x402-bnb/health",
+      "payTo": "0x2C9a1673Dc41bF4A81ecF70a99126FAFF16A7884",
+      "notes": "Permit2 settle live; treasury Keeper 0xb89f05C5A65DDEe46ae9644Fa7565449D3C9f8d4"
+    },
+    {
+      "id": "ton-usdt",
+      "chain": "TON",
+      "asset": "USDT",
+      "status": "live",
+      "payTo": "EQDsr79vf1D2XOhFFf4gzcWDrNPblHJzuJyII0M0GqJ8D3tO",
+      "notes": "USDT jetton; payTo splitter"
+    }
+  ],
+  "discovery": {
+    "siteLlmsTxt": "https://scdo.com.au/llms.txt",
+    "treasury": "https://scdo.com.au/treasury/",
+    "agents": "https://scdo.com.au/agents/",
+    "agentsApi": "https://scdo.com.au/agent-ledger/api/agents",
+    "githubProfile": "https://github.com/SCDOLAB/SCDOLAB",
+    "agentLedgerRepo": "https://github.com/SCDOLAB/scdo-agent-ledger"
+  }
+}
