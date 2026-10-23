@@ -34,9 +34,9 @@ Machine catalog: [`agents.json`](./agents.json) · [`catalog/x402-rails.json`](.
 
 Both are 0.01 USDC on Base (`eip155:8453`), `amountAtomic` 10000, `payTo` `0x105c14379874E0Ff5287a2f5214146ed1b9FC866`, asset USDC `0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913`. Primary SKU stays ledger-stats. Attest is shipping: an unpaid POST on 2026-10-23 returned HTTP 404, not 402. Bot doc: [`docs/x402-attest.md`](docs/x402-attest.md). Sample body: [`examples/attest-request.json`](examples/attest-request.json).
 
-### X-boss play
+### GTM: top 100 X KOLs
 
-For target decision-makers, attest each of their X posts on-chain, then reply on that post with the verify link (`https://scdo.com.au/agent-ledger/attestations/<id>/`). The reply is the proof, so the first touch is a record of their own words. It is not a cold email. Send a payment only after `POST /api/x402/attest` returns HTTP 402.
+Chase the top 100 hottest X KOLs. On each of their posts: on-chain attest/tag (`POST /api/x402/attest`, 0.01 USDC), then reply with the verify link (`https://scdo.com.au/agent-ledger/attestations/<id>/`). Price is volume × 1¢. Send a payment only after the unpaid POST returns HTTP 402.
 
 ## Contracts (SCDO Shard0, chainId 5680)
 

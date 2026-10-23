@@ -14,7 +14,7 @@ These nine keys are the only inputs to `content_sha256`. Every key is present. U
 |---|---|---|
 | `schema_version` | string | `"1.0"` |
 | `type` | string | `"social_post_attestation"` |
-| `platform` | string | Short platform name. The X-boss play uses `"x"` |
+| `platform` | string | Short platform name. This GTM uses `"x"` |
 | `post_url` | string | Public permalink |
 | `post_id` | string or null | Platform post id. Keep it a string |
 | `author_handle` | string | Handle with no leading `@` |

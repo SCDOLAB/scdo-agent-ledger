@@ -79,7 +79,7 @@ Retry the same POST (same JSON body) with the x402 v2 `PAYMENT-SIGNATURE` header
 |---|---|---|
 | `schema_version` | yes | `"1.0"` |
 | `type` | yes | `"social_post_attestation"` |
-| `platform` | yes | short name; X-boss play uses `"x"` |
+| `platform` | yes | short name; this GTM uses `"x"` |
 | `post_url` | yes | public permalink of the post |
 | `post_id` | yes | platform id as a string, or `null` (X ids exceed 2^53) |
 | `author_handle` | yes | handle without `@` |
@@ -140,12 +140,8 @@ The gateway returns this shape after a successful settle. `<id>` is assigned by 
 
 `shard0_memo` is present when the optional memo was anchored. The public page for that id follows `https://scdo.com.au/agent-ledger/attestations/<id>/` (same path pattern as `…/attestations/li-20261023/`).
 
-## X-boss play
+## GTM: top 100 X KOLs
 
-For a target decision-maker who already posts on X:
+Chase the **top 100 hottest X KOLs**. On each of their posts: on-chain attest/tag (`POST https://scdo.com.au/api/x402/attest`, 0.01 USDC on Base), then reply with `verify_url` (`https://scdo.com.au/agent-ledger/attestations/<id>/`).
 
-1. Take the exact public text of one of their posts.
-2. `POST` it to `https://scdo.com.au/api/x402/attest` and pay 0.01 USDC on Base once the unpaid call returns 402.
-3. Reply on that post with `verify_url`.
-
-The reply is the proof. The first touch is an on-chain record of their own words, which is value-first. It is not a cold email.
+Price is volume × 1¢. Send a payment only after the unpaid POST returns HTTP 402.

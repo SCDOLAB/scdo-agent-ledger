@@ -22,9 +22,9 @@ Second: `POST https://scdo.com.au/api/x402/attest` (status shipping). After sett
 - [Schema](https://github.com/SCDOLAB/scdo-agent-ledger/blob/main/attestations/SCHEMA-social_post_v1.md)
 - Index: [`llms-x402.txt`](https://github.com/SCDOLAB/scdo-agent-ledger/blob/main/llms-x402.txt)
 
-### X-boss play
+### GTM: top 100 X KOLs
 
-For target decision-makers, attest each of their X posts on-chain, then reply on the post with the verify link. The first touch is that proof (value-first). It is not a cold email.
+Chase the top 100 hottest X KOLs. On each of their posts: on-chain attest/tag (`POST /api/x402/attest`), then reply with the verify link. Price is volume × 1¢. Pay only after the unpaid POST returns HTTP 402.
 
 ## SCDO x402 multi-chain tax rails (2026-10-23)
 

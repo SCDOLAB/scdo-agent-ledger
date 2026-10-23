@@ -41,6 +41,7 @@ Primary remains ONE_METERED_SKU above. Second SKU is shipping until an unpaid PO
   - payTo: 0x105c14379874E0Ff5287a2f5214146ed1b9FC866
   - type: social_post_attestation
   - what_unlocked: after settle, stores social post text + content_sha256 and returns verify_url (https://scdo.com.au/agent-ledger/attestations/<id>/); optional Shard0 memo SCDO-X-ATTEST-v1:0x{sha256}
+  - gtm: top 100 hottest X KOLs; on each post, on-chain attest/tag then reply with verify_url; price = volume × 0.01 USDC
   - probe_2026-10-23: unpaid POST returned HTTP 404, not 402. Do not pay this URL until it returns 402. No paid tx is published for this SKU.
   - docs: https://github.com/SCDOLAB/scdo-agent-ledger/blob/main/docs/x402-attest.md
   - example: https://github.com/SCDOLAB/scdo-agent-ledger/blob/main/examples/attest-request.json
@@ -88,9 +89,9 @@ Primary remains ONE_METERED_SKU above. Second SKU is shipping until an unpaid PO
 
 Independent customer volume on these rails = 0 as of 2026-10-23 (lab self-tests only). Metered SKU ledger-stats is live and e2e payable on Base USDC. Social post attestation (`POST /api/x402/attest`) is shipping: unpaid POST on 2026-10-23 returned HTTP 404, not 402.
 
-## X-boss play
+## GTM: top 100 X KOLs
 
-For a target decision-maker who posts on X: attest each of their public posts (`POST https://scdo.com.au/api/x402/attest`, 0.01 USDC on Base), then reply on that post with the verify link `https://scdo.com.au/agent-ledger/attestations/<id>/`. The reply is the proof. The first touch is that on-chain record of their own words, which is value-first. It is not a cold email. Run it only after the endpoint returns HTTP 402.
+Chase the top 100 hottest X KOLs. On each of their posts: on-chain attest/tag (`POST https://scdo.com.au/api/x402/attest`, 0.01 USDC on Base), then reply with the verify link `https://scdo.com.au/agent-ledger/attestations/<id>/`. Price is volume × 1¢. Pay only after the unpaid POST returns HTTP 402.
 
 Reference style (different type, already published): https://scdo.com.au/agent-ledger/attestations/li-20261023/
 
