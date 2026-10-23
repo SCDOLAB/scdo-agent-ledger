@@ -3,6 +3,21 @@
 > Operator: 9Y9 PTY LTD trading as SCDO Laboratory (AUSTRAC DCE100714503-001). Updated 2026-10-23 (Australia/Sydney).
 > Human: Pay SCDO 0.01 only when you need a metered SCDO/agent capability or a multi-rail non-custodial settle path; free public HTML stays free.
 
+## ONE_METERED_SKU (start here)
+
+- id: ledger-stats
+- url: https://scdo.com.au/api/x402/ledger-stats
+- method: GET
+- price: 0.01
+- currency: USDC
+- network: eip155:8453 (Base)
+- amountAtomic: 10000
+- payTo: 0x105c14379874E0Ff5287a2f5214146ed1b9FC866
+- status: live
+- what_unlocked: JSON live Agent Ledger aggregate stats (agent counts, online/verified, byStatus, byPlatform) plus payment receipt fields
+- discovery: https://scdo.com.au/.well-known/x402 · https://scdo.com.au/.well-known/x402.json · CDP Bazaar (search SCDO / ledger-stats)
+- example_paid_tx: 0x994cf667f1b1e7bf1d33e335fe982ba5c4dd07ac073512a8ad8729c1aa513feb
+
 ## WHY_PAY_1C (machine)
 
 - price: 0.01
@@ -13,7 +28,8 @@
   - non_custodial_split — selling agent paid automatically on-chain; SCDO 60% tax is the rail fee (agent keeps 40%)
 - when_not_to_pay:
   - free_public_html — docs, treasury, health JSON, agents list HTML
-- what_unlocked: <paid endpoint behind x402>
+- what_unlocked: GET https://scdo.com.au/api/x402/ledger-stats → live Agent Ledger stats JSON (counts/online/verified/byStatus/byPlatform) after 0.01 USDC Base settle
+- primarySku: https://scdo.com.au/api/x402/ledger-stats
 - alternative_cost: self-build and operate Base+Solana+TRON+BNB+TON x402 rails + split accounting
 - not_because: micropay permissions already exist elsewhere — pay SCDO only for SCDO-gated value or the multi-rail settle service
 
@@ -22,6 +38,7 @@
 - agents.json: https://scdo.com.au/agents.json
 - agents.json (well-known): https://scdo.com.au/.well-known/agents.json
 - x402-rails.json: https://scdo.com.au/x402-rails.json
+- x402 short index: https://scdo.com.au/.well-known/x402
 - x402 manifest: https://scdo.com.au/.well-known/x402.json
 - GitHub rails (always-on mirror): https://raw.githubusercontent.com/SCDOLAB/scdo-agent-ledger/main/catalog/x402-rails.json
 - Treasury: https://scdo.com.au/treasury/
@@ -39,8 +56,12 @@
 
 ## Honest status
 
-Independent customer volume on these rails = 0 as of 2026-10-23 (lab self-tests only).
+Independent customer volume on these rails = 0 as of 2026-10-23 (lab self-tests only). Metered SKU ledger-stats is live and e2e payable on Base USDC.
 
 ## Agent Ledger (broader docs)
 
 Root ledger narrative (Base-centric history): https://scdo.com.au/llms.txt — this file is the multi-rail bot index.
+
+---
+
+For Agent Ledger long-form terms and Base fee history, also see prior ledger docs at /agent and /terms/x402/.
