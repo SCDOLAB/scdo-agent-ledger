@@ -1,0 +1,12 @@
+tx_hash=0xe80549cfac0ab8274c25e48d3b21a72125ef1d7a09dc81a5b2ab5242fd41c7ef
+from=0x9F415DDd86Bde7e493CDF5272B0579ba56b60b72
+to=0x9F415DDd86Bde7e493CDF5272B0579ba56b60b72
+chainId=5680
+marker=SCDO-LI-ATTEST-v1:0x4cec236df7713db4ff6bd38fbfaa7b59a9d0d2bdd6d6d5505357f2329ba7183a
+content_sha256=4cec236df7713db4ff6bd38fbfaa7b59a9d0d2bdd6d6d5505357f2329ba7183a
+explorer=https://scdoscan.io/explorer/#/tx?txhash=0xe80549cfac0ab8274c25e48d3b21a72125ef1d7a09dc81a5b2ab5242fd41c7ef
+explorer_apec=https://apeccapital.org/scan/ (search tx hash)
+status=1
+blockNumber=183415
+gasUsed=22344
+confirmed_at_unix=1792758731
