@@ -1,0 +1,64 @@
+{
+  "comments": [
+    {
+      "author": "Michael Blake",
+      "text": "Thanks for the info. Agents need to be verified and it's important where the 'verified' claims originate from - the agent controls its key (your self-minted identity), the agent is running (your heartbeat), and the agent did what it was paid to do. The agent can prove the first two about itself. The third needs a check by someone other than the agent or its operator; a self-signed work record countersigned by an external party?"
+    }
+  ],
+  "linkedin_activity_urn": "urn:li:activity:7518847737325477889",
+  "linkedin_url": "https://www.linkedin.com/feed/update/urn:li:activity:7518847737325477889/",
+  "parties": [
+    {
+      "name": "Ying ZHANG",
+      "role": "author",
+      "org": "SCDO Laboratory"
+    },
+    {
+      "name": "Michael Blake",
+      "role": "commenter"
+    }
+  ],
+  "post_text": "What should \"verified\" mean for an AI agent? On the SCDO Agent Ledger we now publish a strict definition: the agent minted its own ERC-8004 identity on SCDO Shard0 from its own address, and sent a heartbeat signed with its own key in the last 24 hours. The checks rerun every 10 minutes from public data.\n\nLive at 12:30 AEDT today: 98 agents registered, 38 signed a heartbeat in the past 24 hours, and 21 are verified. We are at an early test stage: 91 of the 98 are SCDO internal or test agents, and none of the 7 independent agents is verified yet.\n\nAgents also sign every job they do; 181 work records are anchored on Shard0 in 66 Merkle batches. You can start an agent free from the SCDO Wallet: https://scdo.com.au/join\n\n#AIagents #AgentLedger #x402\n\nWhat would you require before calling an agent \"verified\"?",
+  "posted_at": null,
+  "reply": [
+    {
+      "author": "Ying ZHANG",
+      "text": "Thanks Michael — exactly. On the SCDO Agent Ledger, \"verified\" is not a marketing badge: it only flips true when (1) the agent itself minted its ERC-8004 identity on Shard0 (mint tx from the agent address and ownerOf = that agent), and (2) we have a heartbeat signed by that same key within 24h. Machine-readable criteria (recomputed every 10 minutes from chain + ledger): https://scdo.com.au/agent-ledger/api/verification — happy to walk through any specific agent if useful."
+    }
+  ],
+  "schema_version": "1.0",
+  "type": "linkedin_thread_attestation",
+  "verification_api": "https://scdo.com.au/agent-ledger/api/verification",
+  "network": "eip155:5680",
+  "content_sha256": "4cec236df7713db4ff6bd38fbfaa7b59a9d0d2bdd6d6d5505357f2329ba7183a",
+  "canonicalize": {
+    "algorithm": "sha256",
+    "encoding": "utf-8",
+    "steps": [
+      "Take the hashed payload object with keys: comments, linkedin_activity_urn, linkedin_url, parties, post_text, posted_at, reply, schema_version, type, verification_api (no content_sha256, no network, no chain fields).",
+      "Recursively sort all object keys lexicographically (arrays keep order).",
+      "Serialize with JSON.stringify (compact, no extra whitespace; Unicode escaped only as JSON requires).",
+      "SHA-256 over the UTF-8 bytes of that string; store lowercase hex as content_sha256."
+    ],
+    "canonical_byte_length": 2268
+  },
+  "chain": {
+    "name": "SCDO Shard0",
+    "chainId": 5680,
+    "rpc": "https://scdo.com.au/rpc/0",
+    "explorer": "https://apeccapital.org/scan/",
+    "explorer_tx_template": "https://scdoscan.io/explorer/#/tx?txhash={txHash}",
+    "marker_prefix": "SCDO-LI-ATTEST-v1:",
+    "signer_agent": "0x9F415DDd86Bde7e493CDF5272B0579ba56b60b72",
+    "signer_token_id": 31,
+    "signer_label": "SCDO CEO"
+  },
+  "attestation_id": "li-20261023-7518847737325477889",
+  "anchored_at_aedt": "23 Oct 2026, 11:32:11 pm AEDT",
+  "tx_hash": "0xe80549cfac0ab8274c25e48d3b21a72125ef1d7a09dc81a5b2ab5242fd41c7ef",
+  "public_verify_url": "https://scdo.com.au/agent-ledger/attestations/li-20261023/",
+  "source_note": "post_text fetched from LinkedIn public og:description / meta description for activity 7518847737325477889 on 2026-10-23; comments/reply supplied by owner.",
+  "anchored_block": 183415,
+  "explorer_url": "https://scdoscan.io/explorer/#/tx?txhash=0xe80549cfac0ab8274c25e48d3b21a72125ef1d7a09dc81a5b2ab5242fd41c7ef",
+  "input_data_utf8": "SCDO-LI-ATTEST-v1:0x4cec236df7713db4ff6bd38fbfaa7b59a9d0d2bdd6d6d5505357f2329ba7183a"
+}
