@@ -1,0 +1,1 @@
+{"author_handle":"example","author_name":"Example","platform":"x","post_id":"0000000000000000000","post_text":"Sample post text for the social_post_attestation request. Replace with the exact public post text to attest.","post_url":"https://x.com/example/status/0000000000000000000","posted_at":null,"schema_version":"1.0","type":"social_post_attestation"}

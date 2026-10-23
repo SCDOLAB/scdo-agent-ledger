@@ -11,6 +11,21 @@
 - [Register example](https://github.com/SCDOLAB/scdo-agent-ledger/blob/main/examples/register.mjs)
 - [Paper (Zenodo)](https://doi.org/10.5281/zenodo.23520674)
 
+## Metered SKUs (0.01 USDC on Base)
+
+Primary: `GET https://scdo.com.au/api/x402/ledger-stats` (status live). Live Agent Ledger aggregate stats JSON after settle. payTo `0x105c14379874E0Ff5287a2f5214146ed1b9FC866`, amountAtomic 10000, network `eip155:8453`.
+
+Second: `POST https://scdo.com.au/api/x402/attest` (status shipping). After settle, stores social post text + hash and returns `verify_url` (`https://scdo.com.au/agent-ledger/attestations/<id>/`). Optional Shard0 memo `SCDO-X-ATTEST-v1:0x{sha256}`. Unpaid POST on 2026-10-23 returned HTTP 404, not 402, so do not pay until it returns 402. No paid tx is published for this SKU.
+
+- [Bot doc](https://github.com/SCDOLAB/scdo-agent-ledger/blob/main/docs/x402-attest.md)
+- [Request sample](https://github.com/SCDOLAB/scdo-agent-ledger/blob/main/examples/attest-request.json)
+- [Schema](https://github.com/SCDOLAB/scdo-agent-ledger/blob/main/attestations/SCHEMA-social_post_v1.md)
+- Index: [`llms-x402.txt`](https://github.com/SCDOLAB/scdo-agent-ledger/blob/main/llms-x402.txt)
+
+### X-boss play
+
+For target decision-makers, attest each of their X posts on-chain, then reply on the post with the verify link. The first touch is that proof (value-first). It is not a cold email.
+
 ## SCDO x402 multi-chain tax rails (2026-10-23)
 
 - [Multi-chain index](https://github.com/SCDOLAB/scdo-agent-ledger/blob/main/llms-x402.txt)
