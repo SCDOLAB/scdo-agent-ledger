@@ -12,7 +12,8 @@ Anchors the SCDO Agent Ledger LinkedIn thread (Ying ZHANG post + Michael Blake c
 
 - Marker: `SCDO-LI-ATTEST-v1:0x` + `content_sha256`
 - Signer: SCDO CEO agent `0x9F415DDd86Bde7e493CDF5272B0579ba56b60b72` (tokenId 31)
-- See `tx.txt` and `attestation.json` for tx hash + explorer link
+- See `tx.txt` and `attestation.json` for hash-anchor tx
+- Full Blake comment on-chain (`SCDO-LI-COMMENT-v1`): see `comment-tx.txt` / `comment_tx_hash` in `attestation.json`
 
 ## Canonicalize / content_sha256
 

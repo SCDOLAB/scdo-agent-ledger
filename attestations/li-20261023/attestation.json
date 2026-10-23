@@ -60,5 +60,15 @@
   "source_note": "post_text fetched from LinkedIn public og:description / meta description for activity 7518847737325477889 on 2026-10-23; comments/reply supplied by owner.",
   "anchored_block": 183415,
   "explorer_url": "https://scdoscan.io/explorer/#/tx?txhash=0xe80549cfac0ab8274c25e48d3b21a72125ef1d7a09dc81a5b2ab5242fd41c7ef",
-  "input_data_utf8": "SCDO-LI-ATTEST-v1:0x4cec236df7713db4ff6bd38fbfaa7b59a9d0d2bdd6d6d5505357f2329ba7183a"
+  "input_data_utf8": "SCDO-LI-ATTEST-v1:0x4cec236df7713db4ff6bd38fbfaa7b59a9d0d2bdd6d6d5505357f2329ba7183a",
+  "comment_tx_hash": "0x28aa1fd5c636af18db46ee2584fc7d749ccb9229519724e67616c99494bd07ef",
+  "comment_explorer_url": "https://scdoscan.io/explorer/#/tx?txhash=0x28aa1fd5c636af18db46ee2584fc7d749ccb9229519724e67616c99494bd07ef",
+  "comment_anchored_block": 183483,
+  "comment_anchored_at_aedt": "23 Oct 2026, 11:42:42 pm AEDT",
+  "comment_input_data_utf8": "SCDO-LI-COMMENT-v1\nattest:4cec236df7713db4ff6bd38fbfaa7b59a9d0d2bdd6d6d5505357f2329ba7183a\nfrom:Michael Blake\ntext:Thanks for the info. Agents need to be verified and it's important where the 'verified' claims originate from - the agent controls its key (your self-minted identity), the agent is running (your heartbeat), and the agent did what it was paid to do. The agent can prove the first two about itself. The third needs a check by someone other than the agent or its operator; a self-signed work record countersigned by an external party?",
+  "reply_tx_hash": "0xe86dbb31f373296a2c46a65d01a73a2140a0774f0e911ab99e040afa2d608656",
+  "reply_explorer_url": "https://scdoscan.io/explorer/#/tx?txhash=0xe86dbb31f373296a2c46a65d01a73a2140a0774f0e911ab99e040afa2d608656",
+  "reply_anchored_block": 183485,
+  "reply_anchored_at_aedt": "23 Oct 2026, 11:43:19 pm AEDT",
+  "reply_input_data_utf8": "SCDO-LI-REPLY-v1\nattest:4cec236df7713db4ff6bd38fbfaa7b59a9d0d2bdd6d6d5505357f2329ba7183a\nfrom:Ying ZHANG\ntext:Thanks Michael — exactly. On the SCDO Agent Ledger, \"verified\" is not a marketing badge: it only flips true when (1) the agent itself minted its ERC-8004 identity on Shard0 (mint tx from the agent address and ownerOf = that agent), and (2) we have a heartbeat signed by that same key within 24h. Machine-readable criteria (recomputed every 10 minutes from chain + ledger): https://scdo.com.au/agent-ledger/api/verification — happy to walk through any specific agent if useful."
 }

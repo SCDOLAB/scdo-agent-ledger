@@ -32,7 +32,7 @@
 <main>
   <span class="badge">SCDO Shard0 · eip155:5680</span>
   <h1>On-chain attestation: LinkedIn “verified” thread</h1>
-  <p class="sub">Full conversation text is published below and hashed. The SHA-256 is written into a confirmed Shard0 transaction from the SCDO CEO agent.</p>
+  <p class="sub">Full conversation text is published below and hashed. The SHA-256 is written into a confirmed Shard0 transaction from the SCDO CEO agent. Michael Blake’s comment (and Ying’s reply) are also stored as readable UTF-8 input on separate confirmed txs — visible in explorer「留言」.</p>
 
   <div class="card grid">
     <div>
@@ -51,7 +51,15 @@
       <div class="k">Input marker</div>
       <div class="v">SCDO-LI-ATTEST-v1:0x4cec236df7713db4ff6bd38fbfaa7b59a9d0d2bdd6d6d5505357f2329ba7183a</div>
     </div>
+        <div>
+      <div class="k">Comment tx (full Blake text in 留言)</div>
+      <div class="v"><a href="https://scdoscan.io/explorer/#/tx?txhash=0x28aa1fd5c636af18db46ee2584fc7d749ccb9229519724e67616c99494bd07ef">0x28aa1fd5c636af18db46ee2584fc7d749ccb9229519724e67616c99494bd07ef</a></div>
+    </div>
     <div>
+      <div class="k">Reply tx (Ying text in 留言)</div>
+      <div class="v"><a href="https://scdoscan.io/explorer/#/tx?txhash=0xe86dbb31f373296a2c46a65d01a73a2140a0774f0e911ab99e040afa2d608656">0xe86dbb31f373296a2c46a65d01a73a2140a0774f0e911ab99e040afa2d608656</a></div>
+    </div>
+<div>
       <div class="k">LinkedIn activity</div>
       <div class="v"><a href="https://www.linkedin.com/feed/update/urn:li:activity:7518847737325477889/">urn:li:activity:7518847737325477889</a></div>
     </div>
@@ -66,9 +74,11 @@
     <ol>
       <li>Open <a href="./attestation.json">attestation.json</a> and confirm the post/comment/reply text matches LinkedIn.</li>
       <li>Hash <a href="./canonical-hashed.json">canonical-hashed.json</a> with SHA-256; it must equal <code>4cec236df7713db4ff6bd38fbfaa7b59a9d0d2bdd6d6d5505357f2329ba7183a</code>.</li>
-      <li>Open the <a href="https://scdoscan.io/explorer/#/tx?txhash=0xe80549cfac0ab8274c25e48d3b21a72125ef1d7a09dc81a5b2ab5242fd41c7ef">explorer tx</a> and decode input data: it must start with <code>SCDO-LI-ATTEST-v1:0x</code> followed by that same hex digest, from the CEO agent address.</li>
+      <li>Open the <a href="https://scdoscan.io/explorer/#/tx?txhash=0xe80549cfac0ab8274c25e48d3b21a72125ef1d7a09dc81a5b2ab5242fd41c7ef">hash-anchor tx</a> and decode input data: it must start with <code>SCDO-LI-ATTEST-v1:0x</code> followed by that same hex digest, from the CEO agent address.</li>
+      <li>Open the <a href="https://scdoscan.io/explorer/#/tx?txhash=0x28aa1fd5c636af18db46ee2584fc7d749ccb9229519724e67616c99494bd07ef">comment tx</a> (explorer「留言」): UTF-8 input must be <code>SCDO-LI-COMMENT-v1</code> plus Michael Blake’s full comment text (not only a hash).</li>
+      <li>Optional: open the <a href="https://scdoscan.io/explorer/#/tx?txhash=0xe86dbb31f373296a2c46a65d01a73a2140a0774f0e911ab99e040afa2d608656">reply tx</a> for Ying ZHANG’s reply in the same memo format.</li>
     </ol>
-    <p class="ok">Status: anchored (see tx receipt status = 1, block 183415)</p>
+    <p class="ok">Status: anchored (hash tx block 183415; comment tx block 183483; reply tx block 183485)</p>
   </div>
 
   <div class="card">

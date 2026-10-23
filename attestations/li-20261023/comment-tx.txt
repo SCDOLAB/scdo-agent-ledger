@@ -1,0 +1,21 @@
+comment_tx_hash=0x28aa1fd5c636af18db46ee2584fc7d749ccb9229519724e67616c99494bd07ef
+from=0x9F415DDd86Bde7e493CDF5272B0579ba56b60b72
+to=0x9F415DDd86Bde7e493CDF5272B0579ba56b60b72
+chainId=5680
+marker=SCDO-LI-COMMENT-v1
+content_sha256=4cec236df7713db4ff6bd38fbfaa7b59a9d0d2bdd6d6d5505357f2329ba7183a
+explorer=https://scdoscan.io/explorer/#/tx?txhash=0x28aa1fd5c636af18db46ee2584fc7d749ccb9229519724e67616c99494bd07ef
+status=1
+blockNumber=183483
+gasUsed=29736
+confirmed_at_unix=1792759362
+confirmed_at_aedt=23 Oct 2026, 11:42:42 pm AEDT
+input_utf8_bytes=546
+decoded_match=True
+
+# optional reply memo (same turn)
+reply_tx_hash=0xe86dbb31f373296a2c46a65d01a73a2140a0774f0e911ab99e040afa2d608656
+reply_explorer=https://scdoscan.io/explorer/#/tx?txhash=0xe86dbb31f373296a2c46a65d01a73a2140a0774f0e911ab99e040afa2d608656
+reply_status=1
+reply_blockNumber=183485
+reply_confirmed_at_aedt=23 Oct 2026, 11:43:19 pm AEDT
