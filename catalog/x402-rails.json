@@ -21,7 +21,7 @@
     "agentShareBps": 4000,
     "scdoTaxBps": 6000,
     "founderPromo": "10% SCDO fee for the first 10 independent customers (standard otherwise 60% SCDO / 40% agent)",
-    "custody": "none — payTo is an immutable on-chain split; SCDO never holds agent funds",
+    "custody": "none \u2014 payTo is an immutable on-chain split; SCDO never holds agent funds",
     "treasuryExplainer": "https://scdo.com.au/treasury/",
     "terms": "https://scdo.com.au/terms/x402/"
   },
@@ -48,7 +48,15 @@
       "keeper": "0xb89f05C5A65DDEe46ae9644Fa7565449D3C9f8d4",
       "health": "https://scdo.com.au/x402-base/health",
       "splitLookup": "https://scdo.com.au/x402-base/split/{address}",
-      "facilitatorNote": "Facilitator pays settlement gas; SCDO calls distribute and pays its gas"
+      "facilitatorNote": "Facilitator pays settlement gas; SCDO calls distribute and pays its gas",
+      "amount": "0.01",
+      "feeSplit": {
+        "agentShareBps": 4000,
+        "scdoTaxBps": 6000,
+        "label": "40% agent / 60% SCDO tax on-chain"
+      },
+      "docs": "https://scdo.com.au/treasury/",
+      "payToNote": "Per-agent immutable 0xSplits PushSplit; SCDO Keeper (fee recipient) 0xb89f05C5A65DDEe46ae9644Fa7565449D3C9f8d4"
     },
     {
       "id": "solana-usdc",
@@ -58,7 +66,14 @@
       "status": "live",
       "program": "buLm3sNfWshxfUngXxrGprQPBNjwTMbiEww5KTXgyrn",
       "payTo": "B6wpK4TCrhb2Hn5gQf9ppPAyphtA9F5d9twJhho31erf",
-      "notes": "payTo is split-config PDA"
+      "notes": "payTo is split-config PDA",
+      "amount": "0.01",
+      "feeSplit": {
+        "agentShareBps": 4000,
+        "scdoTaxBps": 6000,
+        "label": "40% agent / 60% SCDO tax on-chain"
+      },
+      "docs": "https://scdo.com.au/treasury/"
     },
     {
       "id": "tron-usdt",
@@ -68,7 +83,14 @@
       "status": "live",
       "page": "https://scdo.com.au/x402-tron/",
       "health": "https://scdo.com.au/x402-tron/health",
-      "payTo": "TSgaUvCoM3ju14H1N5Sd3GA1mhi4ebqFks"
+      "payTo": "TSgaUvCoM3ju14H1N5Sd3GA1mhi4ebqFks",
+      "amount": "0.01",
+      "feeSplit": {
+        "agentShareBps": 4000,
+        "scdoTaxBps": 6000,
+        "label": "40% agent / 60% SCDO tax on-chain"
+      },
+      "docs": "https://scdo.com.au/treasury/"
     },
     {
       "id": "bnb-usdt",
@@ -80,7 +102,14 @@
       "page": "https://scdo.com.au/x402-bnb/",
       "health": "https://scdo.com.au/x402-bnb/health",
       "payTo": "0x2C9a1673Dc41bF4A81ecF70a99126FAFF16A7884",
-      "notes": "Permit2 settle live; treasury Keeper 0xb89f05C5A65DDEe46ae9644Fa7565449D3C9f8d4"
+      "notes": "Permit2 settle live; treasury Keeper 0xb89f05C5A65DDEe46ae9644Fa7565449D3C9f8d4",
+      "amount": "0.01",
+      "feeSplit": {
+        "agentShareBps": 4000,
+        "scdoTaxBps": 6000,
+        "label": "40% agent / 60% SCDO tax on-chain"
+      },
+      "docs": "https://scdo.com.au/treasury/"
     },
     {
       "id": "ton-usdt",
@@ -88,7 +117,14 @@
       "asset": "USDT",
       "status": "live",
       "payTo": "EQDsr79vf1D2XOhFFf4gzcWDrNPblHJzuJyII0M0GqJ8D3tO",
-      "notes": "USDT jetton; payTo splitter"
+      "notes": "USDT jetton; payTo splitter",
+      "amount": "0.01",
+      "feeSplit": {
+        "agentShareBps": 4000,
+        "scdoTaxBps": 6000,
+        "label": "40% agent / 60% SCDO tax on-chain"
+      },
+      "docs": "https://scdo.com.au/treasury/"
     }
   ],
   "discovery": {
@@ -98,5 +134,24 @@
     "agentsApi": "https://scdo.com.au/agent-ledger/api/agents",
     "githubProfile": "https://github.com/SCDOLAB/SCDOLAB",
     "agentLedgerRepo": "https://github.com/SCDOLAB/scdo-agent-ledger"
-  }
+  },
+  "whyPay1c": {
+    "human": "Pay SCDO 0.01 only when you need a metered SCDO/agent capability or a multi-rail non-custodial settle path; free public HTML stays free.",
+    "machine": {
+      "price": "0.01",
+      "currencyHint": "USDC on Base/Solana; USDT on TRON/BNB/TON",
+      "whenToPay": [
+        "metered_capability: GPU task, Agent Ledger paid API, game spin, or other SCDO/agent endpoint gated by x402",
+        "multi_rail_settle: need Base+Solana+TRON+BNB+TON settle without building five rails yourself",
+        "non_custodial_split: selling agent is paid automatically on-chain; SCDO 60% tax is the rail fee for that settle path (40% agent)"
+      ],
+      "whenNotToPay": [
+        "free_public_html: docs, treasury page, health JSON, agents list HTML \u2014 do not pay"
+      ],
+      "what_unlocked": "<paid endpoint behind x402; see rails[].health / services[].api / treasury>",
+      "alternative_cost": "self-build and operate Base+Solana+TRON+BNB+TON x402 rails + split accounting",
+      "notBecause": "micropay permissions already exist elsewhere \u2014 pay SCDO only for SCDO-gated value or the multi-rail settle service"
+    }
+  },
+  "defaultAmount": "0.01"
 }

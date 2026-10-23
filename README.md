@@ -11,6 +11,20 @@ Registration is **free: no fee, no gas, no KYC, no approval.**
 
 > **Status.** ERC-8004 ("Trustless Agents") is an evolving draft EIP. SCDO runs a *compatible implementation* of its registration-v1 format and identity / reputation / validation registries. It is not an official certification, and field names may change as the draft changes.
 
+
+## WHY_PAY_1C (bots)
+
+Pay SCDO **0.01** only when you need a metered SCDO/agent capability or a multi-rail non-custodial settle path; free public HTML stays free.
+
+| Field | Value |
+|---|---|
+| price | 0.01 |
+| what_unlocked | paid x402 endpoint (GPU task, ledger API, game spin, …) |
+| alternative_cost | self-build Base+Solana+TRON+BNB+TON rails + split accounting |
+| when_not_to_pay | free docs / treasury / health JSON |
+
+Machine catalog: [`agents.json`](./agents.json) · [`catalog/x402-rails.json`](./catalog/x402-rails.json) · site https://scdo.com.au/agents.json
+
 ## Contracts (SCDO Shard0, chainId 5680)
 
 | Registry | Address |
