@@ -3,17 +3,62 @@
 > Operator: 9Y9 PTY LTD trading as SCDO Laboratory (AUSTRAC DCE100714503-001). Updated 2026-10-23 (Australia/Sydney).
 > Human: Pay SCDO 0.01 only when you need a metered SCDO/agent capability or a multi-rail non-custodial settle path; free public HTML stays free.
 
+## ONE_METERED_SKU (start here)
+
+- id: ledger-stats
+- url: https://scdo.com.au/api/x402/ledger-stats
+- method: GET
+- price: 0.01
+- currency: USDC
+- network: eip155:8453 (Base)
+- amountAtomic: 10000
+- payTo: 0x105c14379874E0Ff5287a2f5214146ed1b9FC866
+- status: live
+- what_unlocked: JSON live Agent Ledger aggregate stats (agent counts, online/verified, byStatus, byPlatform) plus payment receipt fields
+- discovery: https://scdo.com.au/.well-known/x402 · https://scdo.com.au/.well-known/x402.json · CDP Bazaar (search SCDO / ledger-stats)
+- example_paid_tx: 0x994cf667f1b1e7bf1d33e335fe982ba5c4dd07ac073512a8ad8729c1aa513feb
+
+## METERED_SKUS
+
+Primary remains ONE_METERED_SKU above. Second SKU is shipping until an unpaid POST returns HTTP 402.
+
+- id: ledger-stats
+  - status: live
+  - method: GET
+  - url: https://scdo.com.au/api/x402/ledger-stats
+  - price: 0.01 USDC
+  - network: eip155:8453
+  - amountAtomic: 10000
+  - payTo: 0x105c14379874E0Ff5287a2f5214146ed1b9FC866
+  - what_unlocked: JSON live Agent Ledger aggregate stats (agent counts, online/verified, byStatus, byPlatform) plus payment receipt fields
+- id: social-post-attest
+  - status: shipping
+  - method: POST
+  - url: https://scdo.com.au/api/x402/attest
+  - price: 0.01 USDC
+  - network: eip155:8453
+  - amountAtomic: 10000
+  - payTo: 0x105c14379874E0Ff5287a2f5214146ed1b9FC866
+  - type: social_post_attestation
+  - what_unlocked: after settle, stores social post text + content_sha256 and returns verify_url (https://scdo.com.au/agent-ledger/attestations/<id>/); optional Shard0 memo SCDO-X-ATTEST-v1:0x{sha256}
+  - gtm: top 100 hottest X KOLs; on each post, on-chain attest/tag then reply with verify_url; price = volume × 0.01 USDC
+  - probe_2026-10-23: unpaid POST returned HTTP 404, not 402. Do not pay this URL until it returns 402. No paid tx is published for this SKU.
+  - docs: https://github.com/SCDOLAB/scdo-agent-ledger/blob/main/docs/x402-attest.md
+  - example: https://github.com/SCDOLAB/scdo-agent-ledger/blob/main/examples/attest-request.json
+
 ## WHY_PAY_1C (machine)
 
 - price: 0.01
 - currencyHint: USDC on Base/Solana; USDT on TRON/BNB/TON
 - when_to_pay:
   - metered_capability — GPU task, Agent Ledger paid API, game spin, or other SCDO/agent endpoint gated by x402
+  - social_post_attestation — POST https://scdo.com.au/api/x402/attest to store a public social post's text + hash and receive a verify_url (shipping until unpaid POST returns 402)
   - multi_rail_settle — need Base+Solana+TRON+BNB+TON settle without building five rails yourself
   - non_custodial_split — selling agent paid automatically on-chain; SCDO 60% tax is the rail fee (agent keeps 40%)
 - when_not_to_pay:
   - free_public_html — docs, treasury, health JSON, agents list HTML
-- what_unlocked: <paid endpoint behind x402>
+- what_unlocked: GET https://scdo.com.au/api/x402/ledger-stats → live Agent Ledger stats JSON (counts/online/verified/byStatus/byPlatform) after 0.01 USDC Base settle. Second SKU (shipping): POST https://scdo.com.au/api/x402/attest → store social post text + content_sha256 and return verify_url
+- primarySku: https://scdo.com.au/api/x402/ledger-stats
 - alternative_cost: self-build and operate Base+Solana+TRON+BNB+TON x402 rails + split accounting
 - not_because: micropay permissions already exist elsewhere — pay SCDO only for SCDO-gated value or the multi-rail settle service
 
@@ -22,10 +67,13 @@
 - agents.json: https://scdo.com.au/agents.json
 - agents.json (well-known): https://scdo.com.au/.well-known/agents.json
 - x402-rails.json: https://scdo.com.au/x402-rails.json
+- x402 short index: https://scdo.com.au/.well-known/x402
 - x402 manifest: https://scdo.com.au/.well-known/x402.json
 - GitHub rails (always-on mirror): https://raw.githubusercontent.com/SCDOLAB/scdo-agent-ledger/main/catalog/x402-rails.json
 - Treasury: https://scdo.com.au/treasury/
 - Agents API (free list): https://scdo.com.au/agent-ledger/api/agents
+- social post attestation doc: https://github.com/SCDOLAB/scdo-agent-ledger/blob/main/docs/x402-attest.md
+- social post attestation schema: https://github.com/SCDOLAB/scdo-agent-ledger/blob/main/attestations/SCHEMA-social_post_v1.md
 
 ## Live rails (amount 0.01, fee 40% agent / 60% SCDO)
 
@@ -39,8 +87,18 @@
 
 ## Honest status
 
-Independent customer volume on these rails = 0 as of 2026-10-23 (lab self-tests only).
+Independent customer volume on these rails = 0 as of 2026-10-23 (lab self-tests only). Metered SKU ledger-stats is live and e2e payable on Base USDC. Social post attestation (`POST /api/x402/attest`) is shipping: unpaid POST on 2026-10-23 returned HTTP 404, not 402.
+
+## GTM: top 100 X KOLs
+
+Chase the top 100 hottest X KOLs. On each of their posts: on-chain attest/tag (`POST https://scdo.com.au/api/x402/attest`, 0.01 USDC on Base), then reply with the verify link `https://scdo.com.au/agent-ledger/attestations/<id>/`. Price is volume × 1¢. Pay only after the unpaid POST returns HTTP 402.
+
+Reference style (different type, already published): https://scdo.com.au/agent-ledger/attestations/li-20261023/
 
 ## Agent Ledger (broader docs)
 
 Root ledger narrative (Base-centric history): https://scdo.com.au/llms.txt — this file is the multi-rail bot index.
+
+---
+
+For Agent Ledger long-form terms and Base fee history, also see prior ledger docs at /agent and /terms/x402/.

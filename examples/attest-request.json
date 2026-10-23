@@ -1,0 +1,12 @@
+{
+  "schema_version": "1.0",
+  "type": "social_post_attestation",
+  "platform": "x",
+  "post_url": "https://x.com/example/status/0000000000000000000",
+  "post_id": "0000000000000000000",
+  "author_handle": "example",
+  "author_name": "Example",
+  "post_text": "Sample post text for the social_post_attestation request. Replace with the exact public post text to attest.",
+  "posted_at": null,
+  "shard0_memo": true
+}

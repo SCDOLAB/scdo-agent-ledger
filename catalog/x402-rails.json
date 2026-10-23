@@ -21,7 +21,7 @@
     "agentShareBps": 4000,
     "scdoTaxBps": 6000,
     "founderPromo": "10% SCDO fee for the first 10 independent customers (standard otherwise 60% SCDO / 40% agent)",
-    "custody": "none \u2014 payTo is an immutable on-chain split; SCDO never holds agent funds",
+    "custody": "none — payTo is an immutable on-chain split; SCDO never holds agent funds",
     "treasuryExplainer": "https://scdo.com.au/treasury/",
     "terms": "https://scdo.com.au/terms/x402/"
   },
@@ -133,7 +133,11 @@
     "agents": "https://scdo.com.au/agents/",
     "agentsApi": "https://scdo.com.au/agent-ledger/api/agents",
     "githubProfile": "https://github.com/SCDOLAB/SCDOLAB",
-    "agentLedgerRepo": "https://github.com/SCDOLAB/scdo-agent-ledger"
+    "agentLedgerRepo": "https://github.com/SCDOLAB/scdo-agent-ledger",
+    "ledgerStats": "https://scdo.com.au/api/x402/ledger-stats",
+    "wellKnownX402": "https://scdo.com.au/.well-known/x402",
+    "socialPostAttest": "https://scdo.com.au/api/x402/attest",
+    "socialPostAttestDocs": "https://github.com/SCDOLAB/scdo-agent-ledger/blob/main/docs/x402-attest.md"
   },
   "whyPay1c": {
     "human": "Pay SCDO 0.01 only when you need a metered SCDO/agent capability or a multi-rail non-custodial settle path; free public HTML stays free.",
@@ -143,15 +147,67 @@
       "whenToPay": [
         "metered_capability: GPU task, Agent Ledger paid API, game spin, or other SCDO/agent endpoint gated by x402",
         "multi_rail_settle: need Base+Solana+TRON+BNB+TON settle without building five rails yourself",
-        "non_custodial_split: selling agent is paid automatically on-chain; SCDO 60% tax is the rail fee for that settle path (40% agent)"
+        "non_custodial_split: selling agent is paid automatically on-chain; SCDO 60% tax is the rail fee for that settle path (40% agent)",
+        "social_post_attestation: POST https://scdo.com.au/api/x402/attest stores a public social post's text + hash and returns a verify_url (status shipping until unpaid POST returns 402)"
       ],
       "whenNotToPay": [
-        "free_public_html: docs, treasury page, health JSON, agents list HTML \u2014 do not pay"
+        "free_public_html: docs, treasury page, health JSON, agents list HTML — do not pay"
       ],
-      "what_unlocked": "<paid endpoint behind x402; see rails[].health / services[].api / treasury>",
+      "what_unlocked": "GET https://scdo.com.au/api/x402/ledger-stats → live Agent Ledger stats JSON (counts/online/verified/byStatus/byPlatform) after 0.01 USDC Base settle. Second SKU (shipping): POST https://scdo.com.au/api/x402/attest → store social post text + content_sha256 and return verify_url.",
       "alternative_cost": "self-build and operate Base+Solana+TRON+BNB+TON x402 rails + split accounting",
-      "notBecause": "micropay permissions already exist elsewhere \u2014 pay SCDO only for SCDO-gated value or the multi-rail settle service"
+      "notBecause": "micropay permissions already exist elsewhere — pay SCDO only for SCDO-gated value or the multi-rail settle service",
+      "primarySku": "https://scdo.com.au/api/x402/ledger-stats"
     }
   },
-  "defaultAmount": "0.01"
+  "defaultAmount": "0.01",
+  "meteredSkus": [
+    {
+      "id": "ledger-stats",
+      "name": "SCDO Agent Ledger stats",
+      "url": "https://scdo.com.au/api/x402/ledger-stats",
+      "method": "GET",
+      "price": "0.01",
+      "currency": "USDC",
+      "network": "eip155:8453",
+      "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "amountAtomic": "10000",
+      "payTo": "0x105c14379874E0Ff5287a2f5214146ed1b9FC866",
+      "status": "live",
+      "discoverable": true,
+      "what_unlocked": "JSON: live Agent Ledger aggregate stats (agent counts, online/verified, byStatus, byPlatform) plus payment receipt fields",
+      "wellKnown": "https://scdo.com.au/.well-known/x402",
+      "manifest": "https://scdo.com.au/.well-known/x402.json",
+      "bazaar": "CDP Bazaar searchable as SCDO Agent Ledger / ledger-stats",
+      "examplePaidTx": "0x994cf667f1b1e7bf1d33e335fe982ba5c4dd07ac073512a8ad8729c1aa513feb",
+      "note": "Free public HTML/docs/health/agents list stay free. Pay only this metered endpoint (or other x402-gated SKUs) when you need the paid JSON."
+    },
+    {
+      "id": "social-post-attest",
+      "name": "Social post attestation",
+      "url": "https://scdo.com.au/api/x402/attest",
+      "method": "POST",
+      "price": "0.01",
+      "currency": "USDC",
+      "network": "eip155:8453",
+      "asset": "0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913",
+      "amountAtomic": "10000",
+      "payTo": "0x105c14379874E0Ff5287a2f5214146ed1b9FC866",
+      "status": "shipping",
+      "discoverable": false,
+      "what_unlocked": "After settle: stores social post text + content_sha256 and returns verify_url (https://scdo.com.au/agent-ledger/attestations/<id>/). Optional Shard0 memo SCDO-X-ATTEST-v1:0x{sha256}.",
+      "type": "social_post_attestation",
+      "docs": "https://github.com/SCDOLAB/scdo-agent-ledger/blob/main/docs/x402-attest.md",
+      "schema": "https://github.com/SCDOLAB/scdo-agent-ledger/blob/main/attestations/SCHEMA-social_post_v1.md",
+      "exampleRequest": "https://github.com/SCDOLAB/scdo-agent-ledger/blob/main/examples/attest-request.json",
+      "verifyUrlPattern": "https://scdo.com.au/agent-ledger/attestations/<id>/",
+      "shard0Memo": "SCDO-X-ATTEST-v1:0x{sha256}",
+      "probe": {
+        "at": "2026-10-23",
+        "method": "POST",
+        "unpaidHttpStatus": 404,
+        "note": "Not live until unpaid POST returns 402. Same-day unpaid GET of ledger-stats returned 402. No paid tx is published for this SKU."
+      }
+    }
+  ],
+  "primaryMeteredSku": "https://scdo.com.au/api/x402/ledger-stats"
 }

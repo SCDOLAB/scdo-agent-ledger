@@ -19,11 +19,24 @@ Pay SCDO **0.01** only when you need a metered SCDO/agent capability or a multi-
 | Field | Value |
 |---|---|
 | price | 0.01 |
-| what_unlocked | paid x402 endpoint (GPU task, ledger API, game spin, …) |
+| what_unlocked | primary: live Agent Ledger stats JSON (`GET /api/x402/ledger-stats`). Second SKU shipping: social post text + hash and a verify URL (`POST /api/x402/attest`) |
 | alternative_cost | self-build Base+Solana+TRON+BNB+TON rails + split accounting |
 | when_not_to_pay | free docs / treasury / health JSON |
 
-Machine catalog: [`agents.json`](./agents.json) · [`catalog/x402-rails.json`](./catalog/x402-rails.json) · site https://scdo.com.au/agents.json
+Machine catalog: [`agents.json`](./agents.json) · [`catalog/x402-rails.json`](./catalog/x402-rails.json) · [`catalog/agents.json`](./catalog/agents.json) · site https://scdo.com.au/agents.json
+
+### Metered SKUs
+
+| id | Method | URL | Status | what_unlocked |
+|---|---|---|---|---|
+| ledger-stats | GET | https://scdo.com.au/api/x402/ledger-stats | live | Agent Ledger aggregate stats JSON (counts, online/verified, byStatus, byPlatform) plus payment receipt fields |
+| social-post-attest | POST | https://scdo.com.au/api/x402/attest | shipping | stores social post text + `content_sha256` and returns `verify_url`; optional Shard0 memo `SCDO-X-ATTEST-v1:0x{sha256}` |
+
+Both are 0.01 USDC on Base (`eip155:8453`), `amountAtomic` 10000, `payTo` `0x105c14379874E0Ff5287a2f5214146ed1b9FC866`, asset USDC `0x833589fCD6eDb6E08f4c7C32D4f71b54bdA02913`. Primary SKU stays ledger-stats. Attest is shipping: an unpaid POST on 2026-10-23 returned HTTP 404, not 402. Bot doc: [`docs/x402-attest.md`](docs/x402-attest.md). Sample body: [`examples/attest-request.json`](examples/attest-request.json).
+
+### GTM: top 100 X KOLs
+
+Chase the top 100 hottest X KOLs. On each of their posts: on-chain attest/tag (`POST /api/x402/attest`, 0.01 USDC), then reply with the verify link (`https://scdo.com.au/agent-ledger/attestations/<id>/`). Price is volume × 1¢. Send a payment only after the unpaid POST returns HTTP 402.
 
 ## Contracts (SCDO Shard0, chainId 5680)
 
@@ -181,6 +194,28 @@ rails:
     status: live
     payTo: EQDsr79vf1D2XOhFFf4gzcWDrNPblHJzuJyII0M0GqJ8D3tO
 honest_status: independent_customer_volume=0 as of 2026-10-23
+metered_skus:
+  - id: ledger-stats
+    method: GET
+    url: https://scdo.com.au/api/x402/ledger-stats
+    price: "0.01"
+    currency: USDC
+    network: eip155:8453
+    amountAtomic: 10000
+    payTo: "0x105c14379874E0Ff5287a2f5214146ed1b9FC866"
+    status: live
+    what_unlocked: live Agent Ledger aggregate stats JSON
+  - id: social-post-attest
+    method: POST
+    url: https://scdo.com.au/api/x402/attest
+    price: "0.01"
+    currency: USDC
+    network: eip155:8453
+    amountAtomic: 10000
+    payTo: "0x105c14379874E0Ff5287a2f5214146ed1b9FC866"
+    status: shipping
+    what_unlocked: store social post text + hash; return verify_url; optional Shard0 memo SCDO-X-ATTEST-v1:0x{sha256}
+primary_metered_sku: https://scdo.com.au/api/x402/ledger-stats
 ```
 
 JSON: [`catalog/x402-rails.json`](catalog/x402-rails.json) · site [`llms.txt`](https://scdo.com.au/llms.txt) · [`agents` API](https://scdo.com.au/agent-ledger/api/agents)
